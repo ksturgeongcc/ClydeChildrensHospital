@@ -1,9 +1,9 @@
 
 RewriteEngine On
-RewriteCond %{HTTP_HOST} ^hospitalPortal$ [NC,OR]
-RewriteCond %{HTTP_HOST} ^hospitalPortal$
-RewriteCond %{REQUEST_URI} !hospitalPortal/
-RewriteRule (.*) /hospitalPortal/$1 [L]
+RewriteCond %{HTTP_HOST} ^ClydeChildrensHospital$ [NC,OR]
+RewriteCond %{HTTP_HOST} ^ClydeChildrensHospital$
+RewriteCond %{REQUEST_URI} !ClydeChildrensHospital/
+RewriteRule (.*) /ClydeChildrensHospital/$1 [L]
 
 # Main Navigation
 # This will show a number but it will not give away the column name in your table

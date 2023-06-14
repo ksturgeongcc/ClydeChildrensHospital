@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jun 13, 2023 at 10:46 AM
+-- Generation Time: Jun 14, 2023 at 01:59 PM
 -- Server version: 10.4.20-MariaDB
 -- PHP Version: 8.0.9
 
@@ -32,15 +32,18 @@ CREATE TABLE `appointment` (
   `title` varchar(132) NOT NULL,
   `date` datetime DEFAULT NULL,
   `dept_id` int(10) NOT NULL,
-  `patient_id` int(11) NOT NULL
+  `patient_id` int(11) NOT NULL,
+  `video_path` tinytext NOT NULL,
+  `description` tinytext NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `appointment`
 --
 
-INSERT INTO `appointment` (`id`, `title`, `date`, `dept_id`, `patient_id`) VALUES
-(3, 'Hand x-ray', '2023-06-13 01:33:14', 1, 11);
+INSERT INTO `appointment` (`id`, `title`, `date`, `dept_id`, `patient_id`, `video_path`, `description`) VALUES
+(3, 'Hand x-ray', '2023-06-13 01:33:14', 1, 11, 'https://www.youtube.com/embed/J6Po-Uc7IPY', 'Lorem ipsum, or lipsum as it is sometimes known, is dummy text used in laying out print, graphic or web designs. The passage is attributed to an unknown typesetter in the 15th century who is thought to have scrambled parts of Cicero\'s De Finibus Bonorum e'),
+(4, 'Toy removal from ear', '2023-06-21 10:20:00', 2, 12, 'https://www.youtube.com/embed/HDJdR8m3-CQ', 'ent description');
 
 -- --------------------------------------------------------
 
@@ -50,16 +53,22 @@ INSERT INTO `appointment` (`id`, `title`, `date`, `dept_id`, `patient_id`) VALUE
 
 CREATE TABLE `department` (
   `id` int(11) NOT NULL,
-  `name` varchar(32) NOT NULL
+  `name` varchar(32) NOT NULL,
+  `staff_nurse_img` varchar(32) NOT NULL,
+  `doctor_img` varchar(32) NOT NULL,
+  `nurse_img` varchar(32) NOT NULL,
+  `staff_nurse_name` varchar(64) NOT NULL,
+  `doctor_name` varchar(64) NOT NULL,
+  `nurse_name` varchar(64) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `department`
 --
 
-INSERT INTO `department` (`id`, `name`) VALUES
-(1, 'X-Ray'),
-(2, 'ENT');
+INSERT INTO `department` (`id`, `name`, `staff_nurse_img`, `doctor_img`, `nurse_img`, `staff_nurse_name`, `doctor_name`, `nurse_name`) VALUES
+(1, 'X-Ray', 'xray-nurse.jpg', 'xray-consultant.jpg', 'ent-nurse.jpg', 'X-Ray Staff Nurse', 'X-Ray Doctor', 'X-Ray Nurse'),
+(2, 'ENT', 'ent-nurse.jpg', 'ent-consultant.jpg', 'xray-nurse.jpg', 'Ent Staff Nurse', 'Ent Doctor', 'Ent Nurse');
 
 -- --------------------------------------------------------
 
@@ -80,7 +89,8 @@ CREATE TABLE `login_details` (
 
 INSERT INTO `login_details` (`id`, `username`, `password`, `admin`) VALUES
 (18, 'karen', '$2y$10$7XLBuMQzJKwhqoLsSuBSbecT81bdRp1ag5fp.L.5u7l4dNXQxHJCu', 0),
-(19, 'admin', '$2y$10$7XLBuMQzJKwhqoLsSuBSbecT81bdRp1ag5fp.L.5u7l4dNXQxHJCu', 1);
+(19, 'admin', '$2y$10$7XLBuMQzJKwhqoLsSuBSbecT81bdRp1ag5fp.L.5u7l4dNXQxHJCu', 1),
+(20, 'adam', '$2y$10$e7swl1Wz0IPionu1JN5M5uNVkpD3Rld75B03fMLujUm0dxLQE91cm', 0);
 
 -- --------------------------------------------------------
 
@@ -105,7 +115,8 @@ CREATE TABLE `patient_details` (
 --
 
 INSERT INTO `patient_details` (`id`, `firstname`, `surname`, `address`, `guardian`, `guardian_role`, `tel_num`, `login_details_id`, `email`) VALUES
-(11, 'karen', 'sturgeon', NULL, NULL, NULL, NULL, 18, 'karen@email.com');
+(11, 'karen', 'sturgeon', NULL, NULL, NULL, NULL, 18, 'karen@email.com'),
+(12, 'Adam', 'Stephen', NULL, NULL, NULL, NULL, 20, 'adam@email.com');
 
 --
 -- Indexes for dumped tables
@@ -146,7 +157,7 @@ ALTER TABLE `patient_details`
 -- AUTO_INCREMENT for table `appointment`
 --
 ALTER TABLE `appointment`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `department`
@@ -158,13 +169,13 @@ ALTER TABLE `department`
 -- AUTO_INCREMENT for table `login_details`
 --
 ALTER TABLE `login_details`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
 
 --
 -- AUTO_INCREMENT for table `patient_details`
 --
 ALTER TABLE `patient_details`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- Constraints for dumped tables

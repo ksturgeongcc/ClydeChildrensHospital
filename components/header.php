@@ -1,7 +1,5 @@
 <?php
 session_start();
-
-define('ROOT_DIR','http://localhost:8040/hospitalPortal/');
 ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
@@ -17,6 +15,7 @@ error_reporting(E_ALL);
 	<link href="https://fonts.googleapis.com/css2?family=Berkshire+Swash&family=Crafty+Girls&family=Hachi+Maru+Pop&display=swap" rel="stylesheet">
 	
 	<link href="https://unpkg.com/tailwindcss@1.3.4/dist/tailwind.min.css" rel="stylesheet">
+	<link href="assets/scss/app.css" rel="stylesheet">
 </head>
 <body class="bg-gray-200 font-sans leading-normal tracking-normal">
 	
