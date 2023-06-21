@@ -45,10 +45,10 @@ if ($stmt = $conn->prepare('SELECT id, password, admin FROM login_details WHERE 
             exit();
 
         } else {
-            echo 'Incorrect password!';
+            header('Location: login?message=Incorrect login details.');
         }
     }else {
-        echo 'Incorrect username!';
+        header('Location: login?message=Incorrect login details.');
     }
     setcookie("username", $_POST['username'], time() + 86400, "/");
 
